@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6gajp42fs6fm"]
+
+[ext_resource type="Script" path="res://Game.cs" id="1_lop14"]
+[ext_resource type="Texture2D" uid="uid://dyvgs0xbkwmvv" path="res://mountains-purple-synthwave-grid-wallpaper-preview.jpg" id="2_3b1lo"]
+[ext_resource type="Texture2D" uid="uid://cseka1odfnkpb" path="res://MikuButton.png" id="3_3i7ln"]
+[ext_resource type="Texture2D" uid="uid://tp2058d4w3b6" path="res://MikuClick.png" id="4_luwuc"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lop14")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node"]
+
+[node name="Mountains-purple-synthwave-grid-wallpaper-preview" type="Sprite2D" parent="Node/CanvasLayer"]
+position = Vector2(569.5, 320)
+scale = Vector2(1.63324, 1.1512)
+texture = ExtResource("2_3b1lo")
+
+[node name="points" type="Label" parent="Node/CanvasLayer"]
+offset_left = 474.0
+offset_top = 536.0
+offset_right = 760.0
+offset_bottom = 614.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pointspersecond" type="Label" parent="Node/CanvasLayer"]
+offset_left = 107.0
+offset_top = 261.0
+offset_right = 147.0
+offset_bottom = 284.0
+
+[node name="clickbutton" type="TextureButton" parent="Node/CanvasLayer"]
+offset_left = 274.0
+offset_top = -45.0
+offset_right = 924.0
+offset_bottom = 605.0
+action_mode = 0
+texture_normal = ExtResource("3_3i7ln")
+texture_pressed = ExtResource("4_luwuc")
+stretch_mode = 0
+
+[node name="upgradebutton" type="Button" parent="Node/CanvasLayer"]
+offset_left = 71.0
+offset_top = 480.0
+offset_right = 170.0
+offset_bottom = 525.0
+
+[node name="MenuButton" type="MenuButton" parent="Node/CanvasLayer"]
+offset_left = 27.0
+offset_top = 111.0
+offset_right = 207.0
+offset_bottom = 182.0
+text = "Upgrades"
+alignment = 0
+switch_on_hover = true
+item_count = 2
+popup/item_0/text = "Auto-Click"
+popup/item_1/text = "Points-Per-Click"
+popup/item_1/id = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="button_down" from="Node/CanvasLayer/clickbutton" to="." method="_on_clickbutton_button_down"]
+[connection signal="button_down" from="Node/CanvasLayer/upgradebutton" to="." method="_on_upgradebutton_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
