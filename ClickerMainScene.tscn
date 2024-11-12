@@ -12,25 +12,14 @@ script = ExtResource("1_lop14")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Node"]
 
-[node name="Mountains-purple-synthwave-grid-wallpaper-preview" type="Sprite2D" parent="Node/CanvasLayer"]
-position = Vector2(569.5, 320)
-scale = Vector2(1.63324, 1.1512)
+[node name="TextureRect" type="TextureRect" parent="Node/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 texture = ExtResource("2_3b1lo")
-
-[node name="points" type="Label" parent="Node/CanvasLayer"]
-offset_left = 474.0
-offset_top = 536.0
-offset_right = 760.0
-offset_bottom = 614.0
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="pointspersecond" type="Label" parent="Node/CanvasLayer"]
-offset_left = 107.0
-offset_top = 261.0
-offset_right = 147.0
-offset_bottom = 284.0
 
 [node name="clickbutton" type="TextureButton" parent="Node/CanvasLayer"]
 offset_left = 274.0
@@ -42,28 +31,91 @@ texture_normal = ExtResource("3_3i7ln")
 texture_pressed = ExtResource("4_luwuc")
 stretch_mode = 0
 
-[node name="upgradebutton" type="Button" parent="Node/CanvasLayer"]
-offset_left = 71.0
-offset_top = 480.0
-offset_right = 170.0
-offset_bottom = 525.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Node/CanvasLayer"]
+offset_right = 184.0
+offset_bottom = 650.0
+theme_override_constants/separation = 50
+alignment = 1
 
-[node name="MenuButton" type="MenuButton" parent="Node/CanvasLayer"]
-offset_left = 27.0
-offset_top = 111.0
-offset_right = 207.0
-offset_bottom = 182.0
-text = "Upgrades"
-alignment = 0
-switch_on_hover = true
-item_count = 2
-popup/item_0/text = "Auto-Click"
-popup/item_1/text = "Points-Per-Click"
-popup/item_1/id = 1
+[node name="upgradebutton" type="Button" parent="Node/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Upgrade Cost: 10"
+
+[node name="PPCbutton" type="Button" parent="Node/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Per-Click cost: 20"
+
+[node name="Label" type="Label" parent="Node/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Node/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="Pointsbox" type="HBoxContainer" parent="Node/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -575.0
+offset_top = 571.0
+offset_right = 577.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="pointspersecond" type="Label" parent="Node/CanvasLayer/Control/Pointsbox"]
+layout_mode = 2
+text = "0/s"
+
+[node name="points" type="Label" parent="Node/CanvasLayer/Control/Pointsbox"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pointstitle" type="HBoxContainer" parent="Node/CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -575.0
+offset_top = 520.0
+offset_right = 577.0
+offset_bottom = 597.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="pointspersecond" type="Label" parent="Node/CanvasLayer/Control/Pointstitle"]
+layout_mode = 2
+text = "Auto-Points"
+
+[node name="points" type="Label" parent="Node/CanvasLayer/Control/Pointstitle"]
+layout_mode = 2
+text = "Points"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
 [connection signal="button_down" from="Node/CanvasLayer/clickbutton" to="." method="_on_clickbutton_button_down"]
-[connection signal="button_down" from="Node/CanvasLayer/upgradebutton" to="." method="_on_upgradebutton_button_down"]
+[connection signal="button_down" from="Node/CanvasLayer/VBoxContainer/upgradebutton" to="." method="_on_upgradebutton_button_down"]
+[connection signal="button_down" from="Node/CanvasLayer/VBoxContainer/PPCbutton" to="." method="_on_pp_cbutton_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
