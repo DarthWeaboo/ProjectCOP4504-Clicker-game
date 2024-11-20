@@ -39,11 +39,9 @@ alignment = 1
 
 [node name="upgradebutton" type="Button" parent="Node/CanvasLayer/VBoxContainer"]
 layout_mode = 2
-text = "Upgrade Cost: 10"
 
 [node name="PPCbutton" type="Button" parent="Node/CanvasLayer/VBoxContainer"]
 layout_mode = 2
-text = "Per-Click cost: 20"
 
 [node name="Label" type="Label" parent="Node/CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -78,11 +76,9 @@ alignment = 1
 
 [node name="pointspersecond" type="Label" parent="Node/CanvasLayer/Control/Pointsbox"]
 layout_mode = 2
-text = "0/s"
 
 [node name="points" type="Label" parent="Node/CanvasLayer/Control/Pointsbox"]
 layout_mode = 2
-text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -112,10 +108,38 @@ text = "Points"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextEdit" type="TextEdit" parent="Node/CanvasLayer"]
+offset_left = 1003.0
+offset_top = 527.0
+offset_right = 1149.0
+offset_bottom = 646.0
+text = "I do not own 
+these images. 
+this is purely for 
+education use."
+autowrap_mode = 1
+
+[node name="Settings" type="VBoxContainer" parent="Node/CanvasLayer"]
+offset_left = 1044.0
+offset_top = 44.0
+offset_right = 1152.0
+offset_bottom = 183.0
+theme_override_constants/separation = 10
+
+[node name="Save" type="Button" parent="Node/CanvasLayer/Settings"]
+layout_mode = 2
+text = "Save"
+
+[node name="Reset" type="Button" parent="Node/CanvasLayer/Settings"]
+layout_mode = 2
+text = "Reset"
+
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
 [connection signal="button_down" from="Node/CanvasLayer/clickbutton" to="." method="_on_clickbutton_button_down"]
 [connection signal="button_down" from="Node/CanvasLayer/VBoxContainer/upgradebutton" to="." method="_on_upgradebutton_button_down"]
 [connection signal="button_down" from="Node/CanvasLayer/VBoxContainer/PPCbutton" to="." method="_on_pp_cbutton_button_down"]
+[connection signal="button_down" from="Node/CanvasLayer/Settings/Save" to="." method="_on_save_button_down"]
+[connection signal="button_down" from="Node/CanvasLayer/Settings/Reset" to="." method="_on_reset_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
